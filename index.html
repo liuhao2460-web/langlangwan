@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>野三坡浪浪湾乐园 | 招聘互动版</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f0f7ff 0%, #e0ecf8 100%);
+            color: #1a2a3a;
+            line-height: 1.5;
+            padding: 0 0 80px 0;
+        }
+
+        /* 顶部背景区域（可设置背景图片） */
+        .hero-bg {
+            /* ⚠️ 【图片位置1：顶部大背景图】请将下面的背景图路径替换为你的图片 */
+            background-image: url('图片/顶部背景图.jpg');
+            /* 如果暂时没有图片，保留下面的渐变作为备用 */
+            background: linear-gradient(135deg, #0b4e8c 0%, #1a7bb9 50%, #2aa9c9 100%);
+            background-size: cover;
+            background-position: center;
+            padding: 40px 20px 60px;
+            border-radius: 0 0 40px 40px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .hero-bg h1 {
+            font-size: 28px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .hero-bg p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: -30px auto 0;
+            padding: 0 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: white;
+            border-radius: 28px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 20px 20px 8px 20px;
+            font-weight: 600;
+            font-size: 20px;
+            border-bottom: 2px solid #f0f4f8;
+        }
+
+        .card-body {
+            padding: 16px 20px 20px;
+        }
+
+        /* 岗位列表 */
+        .job-item {
+            border-bottom: 1px solid #eef2f8;
+            padding: 16px 0;
+        }
+
+        .job-item:last-child {
+            border-bottom: none;
+        }
+
+        .job-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a4e6b;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .job-count {
+            font-size: 13px;
+            font-weight: normal;
+            background: #eef2fa;
+            padding: 3px 12px;
+            border-radius: 20px;
+            color: #2c7da0;
+        }
+
+        .job-desc {
+            font-size: 14px;
+            color: #4a627a;
+            margin-top: 8px;
+        }
+
+        /* 福利标签 */
+        .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .benefit-tag {
+            background: #e8f3fc;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #0c6b8f;
+        }
+
+        /* 园区实景图片区域 */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .gallery-img {
+            flex: 1;
+            min-width: 100px;
+            height: 100px;
+            border-radius: 16px;
+            background-size: cover;
+            background-position: center;
+            background-color: #eef2f5;
+        }
+        .img-caption {
+            font-size: 12px;
+            color: #8ba0b5;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        /* 联系方式卡片 */
+        .contact-card {
+            background: linear-gradient(115deg, #f0f9ff 0%, #e6f4fa 100%);
+            text-align: center;
+            padding: 24px;
+        }
+
+        .phone {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0a6b8e;
+            margin: 12px 0;
+            letter-spacing: 1px;
+        }
+
+        .btn-wechat {
+            display: inline-block;
+            background: #25b66b;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        /* 留言板样式 */
+        .comment-item {
+            background: #f8fafd;
+            border-radius: 20px;
+            padding: 14px;
+            margin-bottom: 12px;
+            border: 1px solid #e9edf2;
+        }
+
+        .comment-name {
+            font-weight: 700;
+            color: #1a4e6b;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .comment-time {
+            font-size: 11px;
+            color: #8ba0b5;
+            font-weight: normal;
+        }
+
+        .comment-content {
+            font-size: 14px;
+            color: #2a4055;
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+
+        .comment-like {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #8ba0b5;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 20px;
+            background: #eff3f8;
+        }
+
+        .comment-like.liked {
+            color: #e74c3c;
+        }
+
+        .comment-input-area {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .comment-input-area input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #dce3ec;
+            border-radius: 30px;
+            font-size: 14px;
+            background: #f8fafd;
+        }
+
+        .comment-input-area textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #dce3ec;
+            border-radius: 20px;
+            font-size: 14px;
+            resize: none;
+            background: #f8fafd;
+            font-family: inherit;
+        }
+
+        .comment-submit {
+            background: #1a7bb9;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .share-tip {
+            background: #e8f3fc;
+            border-radius: 20px;
+            padding: 14px;
+            margin-top: 16px;
+            font-size: 13px;
+            text-align: center;
+            color: #0c6b8f;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #8ba0b5;
+            margin-top: 24px;
+            padding: 16px;
+        }
+
+        @media (max-width: 480px) {
+            .hero-bg h1 { font-size: 24px; }
+            .phone { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ⚠️ 【图片位置1：顶部大背景图】 -->
+<div class="hero-bg">
+    <h1>🏖️ 野三坡浪浪湾乐园</h1>
+    <p>保定宏川映月旅游开发有限公司 · 招聘启事</p>
+    <p style="font-size: 13px; margin-top: 12px;">🎓 实习+就业｜🏠 包吃包住｜📚 带薪培训</p>
+</div>
+
+<div class="container">
+    <!-- 公司简介 -->
+    <div class="card">
+        <div class="card-header">🌊 关于我们</div>
+        <div class="card-body">
+            <p style="font-size: 14px; margin-bottom: 12px;">野三坡浪浪湾乐园坐落于风景秀丽的野三坡景区内，集水上娱乐、互动演艺、非遗体验、动感游乐为一体。</p>
+            <p style="font-size: 14px; background: #e8f3fc; padding: 12px; border-radius: 16px;">✨ 特别欢迎幼师、大专院校学生及毕业生加入！表现优异者可留任转正。</p>
+            
+            <!-- ⚠️ 【图片位置2：园区环境/全景照片】 -->
+            <div style="margin-top: 16px;">
+                <div style="background-color: #eef2f5; border-radius: 20px; min-height: 160px; background-size: cover; background-position: center; background-image: url('图片/园区全景图.jpg');">
+                    <!-- 如果图片加载失败，显示占位符 -->
+                    <div style="text-align: center; padding: 60px 20px; color: #8ba0b5; background: rgba(255,255,255,0.7); border-radius: 20px;">
+                        📷 园区全景图<br><span style="font-size: 12px;">【请替换图片路径：图片/园区全景图.jpg】</span>
+                    </div>
+                </div>
+                <div class="img-caption">△ 野三坡浪浪湾乐园实景</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 招聘岗位 -->
+    <div class="card">
+        <div class="card-header">🎯 热招岗位</div>
+        <div class="card-body">
+            
+            <!-- ⚠️ 【图片位置3：岗位相关配图 - 舞台/演出场景】 -->
+            <div style="margin-bottom: 16px;">
+                <div style="background-color: #eef2f5; border-radius: 20px; min-height: 120px; background-size: cover; background-position: center; background-image: url('图片/舞台演出照.jpg');">
+                    <div style="text-align: center; padding: 45px 20px; color: #8ba0b5; background: rgba(255,255,255,0.7); border-radius: 20px;">
+                        🎭 舞台互动演出<br><span style="font-size: 12px;">【请替换图片路径：图片/舞台演出照.jpg】</span>
+                    </div>
+                </div>
+                <div class="img-caption">△ 舞蹈NPC演员工作场景</div>
+            </div>
+            
+            <div class="job-item">
+                <div class="job-title">前台售票导购 <span class="job-count">2名</span></div>
+                <div class="job-desc">女性18-25周岁，形象大方，熟练操作办公设备。负责前台接待、票务咨询、线上核销。</div>
+            </div>
+            <div class="job-item">
+                <div class="job-title">舞蹈NPC演员 <span class="job-count">2名</span></div>
+                <div class="job-desc">女性18-25周岁，有基础舞蹈功底。负责舞台互动演出，带动气氛，配合游客打卡。</div>
+            </div>
+            
+            <!-- ⚠️ 【图片位置4：非遗手工场景照片】 -->
+            <div style="margin: 16px 0;">
+                <div style="background-color: #eef2f5; border-radius: 20px; min-height: 120px; background-size: cover; background-position: center; background-image: url('图片/非遗手工照.jpg');">
+                    <div style="text-align: center; padding: 45px 20px; color: #8ba0b5; background: rgba(255,255,255,0.7); border-radius: 20px;">
+                        ✂️ 非遗手工体验<br><span style="font-size: 12px;">【请替换图片路径：图片/非遗手工照.jpg】</span>
+                    </div>
+                </div>
+                <div class="img-caption">△ 非遗手工讲师带领小朋友制作</div>
+            </div>
+            
+            <div class="job-item">
+                <div class="job-title">非遗手工讲师 <span class="job-count">2名</span></div>
+                <div class="job-desc">热爱非遗，有手工基础（剪纸/布艺等），耐心善于和小朋友沟通。</div>
+            </div>
+            <div class="job-item">
+                <div class="job-title">卡丁车售票管理员 <span class="job-count">2名</span></div>
+                <div class="job-desc">男性18-25周岁，安全意识强。负责售票、车辆调度、安全讲解。</div>
+            </div>
+            
+            <!-- ⚠️ 【图片位置5：卡丁车场景照片】 -->
+            <div style="margin: 16px 0;">
+                <div style="background-color: #eef2f5; border-radius: 20px; min-height: 120px; background-size: cover; background-position: center; background-image: url('图片/卡丁车赛道.jpg');">
+                    <div style="text-align: center; padding: 45px 20px; color: #8ba0b5; background: rgba(255,255,255,0.7); border-radius: 20px;">
+                        🏎️ 卡丁车赛道<br><span style="font-size: 12px;">【请替换图片路径：图片/卡丁车赛道.jpg】</span>
+                    </div>
+                </div>
+                <div class="img-caption">△ 卡丁车项目实景</div>
+            </div>
+            
+            <div class="job-item">
+                <div class="job-title">售货员 <span class="job-count">2名</span></div>
+                <div class="job-desc">形象整洁，善于沟通。负责水上用品租售、库存管理。</div>
+            </div>
+            <div class="job-item">
+                <div class="job-title">咖啡师 <span class="job-count">2名</span></div>
+                <div class="job-desc">女性18-25周岁，热爱咖啡制作。负责吧台运营、饮品制作。</div>
+            </div>
+            
+            <!-- ⚠️ 【图片位置6：咖啡吧台或售货区照片】 -->
+            <div style="margin-top: 16px;">
+                <div style="background-color: #eef2f5; border-radius: 20px; min-height: 120px; background-size: cover; background-position: center; background-image: url('图片/咖啡吧台.jpg');">
+                    <div style="text-align: center; padding: 45px 20px; color: #8ba0b5; background: rgba(255,255,255,0.7); border-radius: 20px;">
+                        ☕ 咖啡吧台<br><span style="font-size: 12px;">【请替换图片路径：图片/咖啡吧台.jpg】</span>
+                    </div>
+                </div>
+                <div class="img-caption">△ 咖啡师工作环境</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 福利待遇 -->
+    <div class="card">
+        <div class="card-header">🎁 我们提供</div>
+        <div class="card-body">
+            <div class="benefits">
+                <span class="benefit-tag">💰 薪资高于同行</span>
+                <span class="benefit-tag">🏠 包吃包住</span>
+                <span class="benefit-tag">📚 带薪培训</span>
+                <span class="benefit-tag">🎓 实习+就业</span>
+                <span class="benefit-tag">🌳 景区办公</span>
+                <span class="benefit-tag">🚀 管理培养</span>
+            </div>
+            
+            <!-- ⚠️ 【图片位置7：团队合影/员工活动照片】 -->
+            <div style="margin-top: 8px;">
+                <div style="background-color: #eef2f5; border-radius: 20px; min-height: 140px; background-size: cover; background-position: center; background-image: url('图片/团队合影.jpg');">
+                    <div style="text-align: center; padding: 55px 20px; color: #8ba0b5; background: rgba(255,255,255,0.7); border-radius: 20px;">
+                        👥 欢乐团队<br><span style="font-size: 12px;">【请替换图片路径：图片/团队合影.jpg】</span>
+                    </div>
+                </div>
+                <div class="img-caption">△ 加入我们，成为浪浪湾大家庭的一员</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系方式 -->
+    <div class="card contact-card">
+        <div style="font-size: 18px; font-weight: 600;">📞 立即联系</div>
+        <div class="phone">13658635429</div>
+        <div style="font-size: 14px; margin-bottom: 12px;">微信同号（添加请备注：应聘岗位+姓名）</div>
+        <a href="weixin://" class="btn-wechat" onclick="alert('请复制微信号 13658635429 在微信中添加好友咨询')">➕ 添加微信咨询</a>
+        <div style="font-size: 13px; margin-top: 12px;">📍 工作地点：保定野三坡浪浪湾乐园</div>
+    </div>
+
+    <!-- 互动留言板 -->
+    <div class="card">
+        <div class="card-header">💬 互动留言板 <span style="font-size: 12px; font-weight: normal;">—— 来聊聊你的求职意向</span></div>
+        <div class="card-body">
+            <div id="commentsList">
+                <div class="comment-item">
+                    <div class="comment-name">👤 系统公告 <span class="comment-time">刚刚</span></div>
+                    <div class="comment-content">🎉 欢迎留言咨询！留下你的姓名+意向岗位，我们会尽快联系你~</div>
+                    <div class="comment-like" onclick="likeComment(this)">❤️ 点赞 <span>0</span></div>
+                </div>
+            </div>
+            
+            <div class="comment-input-area">
+                <input type="text" id="commentName" placeholder="你的名字（必填）" style="width: 100%; margin-bottom: 8px;">
+                <textarea id="commentContent" rows="2" placeholder="留言内容：想应聘的岗位 / 你的问题"></textarea>
+                <button class="comment-submit" onclick="addComment()">✍️ 提交留言</button>
+            </div>
+            
+            <div class="share-tip">
+                📤 转发给朋友或朋友圈，让更多人看到招聘信息！
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        保定宏川映月旅游开发有限公司 野三坡浪浪湾乐园<br>
+        人力资源部
+    </div>
+</div>
+
+<script>
+    // 留言存储（使用 localStorage 保存数据）
+    let comments = [];
+
+    // 加载已保存的留言
+    function loadComments() {
+        const saved = localStorage.getItem('recruit_comments');
+        if (saved) {
+            comments = JSON.parse(saved);
+            renderComments();
+        }
+    }
+
+    // 保存留言到本地
+    function saveComments() {
+        localStorage.setItem('recruit_comments', JSON.stringify(comments));
+    }
+
+    // 渲染留言列表
+    function renderComments() {
+        const container = document.getElementById('commentsList');
+        if (!container) return;
+        
+        if (comments.length === 0) {
+            container.innerHTML = `
+                <div class="comment-item">
+                    <div class="comment-name">👤 系统公告 <span class="comment-time">刚刚</span></div>
+                    <div class="comment-content">🎉 欢迎留言咨询！留下你的姓名+意向岗位，我们会尽快联系你~</div>
+                    <div class="comment-like" onclick="likeComment(this)">❤️ 点赞 <span>0</span></div>
+                </div>
+            `;
+            return;
+        }
+        
+        container.innerHTML = comments.map((c, idx) => `
+            <div class="comment-item" data-idx="${idx}">
+                <div class="comment-name">
+                    👤 ${escapeHtml(c.name)} 
+                    <span class="comment-time">${c.time}</span>
+                </div>
+                <div class="comment-content">${escapeHtml(c.content)}</div>
+                <div class="comment-like" onclick="likeCommentByIdx(${idx}, this)">
+                    ❤️ 点赞 <span class="like-count">${c.likes || 0}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // 添加新留言
+    function addComment() {
+        const nameInput = document.getElementById('commentName');
+        const contentInput = document.getElementById('commentContent');
+        const name = nameInput.value.trim();
+        const content = contentInput.value.trim();
+        
+        if (!name) {
+            alert('请填写你的名字');
+            return;
+        }
+        if (!content) {
+            alert('请填写留言内容');
+            return;
+        }
+        
+        const now = new Date();
+        const timeStr = `${now.getMonth()+1}/${now.getDate()} ${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+        
+        comments.unshift({
+            name: name,
+            content: content,
+            time: timeStr,
+            likes: 0
+        });
+        
+        if (comments.length > 50) comments.pop();
+        
+        saveComments();
+        renderComments();
+        
+        nameInput.value = '';
+        contentInput.value = '';
+        
+        alert('留言成功！刷新页面可查看最新留言~');
+    }
+
+    function likeCommentByIdx(idx, element) {
+        if (!comments[idx]) return;
+        comments[idx].likes = (comments[idx].likes || 0) + 1;
+        saveComments();
+        renderComments();
+    }
+    
+    function likeComment(element) {
+        const likeSpan = element.querySelector('span');
+        let count = parseInt(likeSpan.innerText) || 0;
+        likeSpan.innerText = count + 1;
+        element.classList.add('liked');
+    }
+    
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+    
+    loadComments();
+</script>
+</body>
+</html>
